@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
-import bcrypt from "bcryptjs"
-import userModel from "../models/user.model.js"
+import bcrypt from "bcrypt"
+import userModel from "../models/user.models.js"
 
 // generate access token
 const generateAccessToken = (userId) => {
@@ -80,9 +80,11 @@ async function signup(req, res) {
 async function login(req, res) {
   try {
     const { email, password } = req.body
+    console.log(req.body);
+    
 
     // check user
-    const user = await userModel.findOne({ email })
+    const user = await userModel.findOne({ email }).select("+password")
 
     if (!user) {
       return res.status(400).json({
