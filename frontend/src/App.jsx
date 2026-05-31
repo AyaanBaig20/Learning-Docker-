@@ -3,6 +3,7 @@ import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Signup from './auth/pages/Signup'
 import Login from './auth/pages/Login'
 import Home from './auth/pages/Home'
+import Loading from './auth/pages/Loading'
 
 const App = () => {
   return (

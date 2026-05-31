@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {useAuth} from "../hook/useAuth"
 import {successToast,failureToast} from "../utils/toast"
+import Loading from "./Loading"
+import {useSelector} from "react-redux"
 
 const Login = () => {
+  let loading = useSelector((state)=>state.auth.loading)
   const {handleLogin,handleSignup} =useAuth()
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({email: "",password: "",});
 
   const handleChange = (e) => {
     setFormData({
@@ -25,7 +25,9 @@ const Login = () => {
       failureToast(res.message)
     }
   };
-
+  if (loading) {
+    return <Loading/>
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
