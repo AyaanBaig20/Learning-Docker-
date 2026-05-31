@@ -2,6 +2,7 @@ import express from "express";
 import AuthRoutes from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import userModel from "./models/user.models.js";
 
 let app = express();
 

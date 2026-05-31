@@ -80,8 +80,6 @@ async function signup(req, res) {
 async function login(req, res) {
   try {
     const { email, password } = req.body
-    console.log(req.body);
-    
 
     // check user
     const user = await userModel.findOne({ email }).select("+password")
@@ -110,7 +108,7 @@ async function login(req, res) {
     // set cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false, // true in production
+      secure: false, 
       sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000
     })

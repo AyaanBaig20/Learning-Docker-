@@ -17,7 +17,7 @@ export const useAuth = () => {
 
       return res;
     } catch (err) {
-      return { success: false, message: "Login failed" };
+      return { success: false, message:err.response?.data?.message || "Login failed" };
     } finally {
       dispatch(setLoading(false));
     }
@@ -35,7 +35,7 @@ export const useAuth = () => {
 
       return res;
     } catch (err) {
-      return { success: false, message: "Signup failed" };
+      return { success: false, message:err.response?.data?.message ||"Signup failed" };
     } finally {
       dispatch(setLoading(false));
     }

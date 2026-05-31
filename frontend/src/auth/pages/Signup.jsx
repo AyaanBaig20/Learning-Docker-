@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import {useAuth} from "../hook/useAuth"
+import {successToast,failureToast} from "../utils/toast"
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  let {handleSignup} = useAuth()
+  const [formData, setFormData] = useState({name: "",email: "",password: "",});
 
   const handleChange = (e) => {
     setFormData({
@@ -14,10 +13,14 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(formData);
-
+    let res = await handleSignup({name:formData.name,email:formData.email,password:formData.password})
+    if(res.success){
+      successToast(res.message)
+    }else{
+      failureToast(res.message)
+    }
   };
 
   return (

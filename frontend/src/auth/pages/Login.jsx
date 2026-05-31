@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {useAuth} from "../hook/useAuth"
+import {successToast,failureToast} from "../utils/toast"
 
 const Login = () => {
   const {handleLogin,handleSignup} =useAuth()
@@ -19,9 +20,9 @@ const Login = () => {
     e.preventDefault();
     let res = await handleLogin({email:formData.email,password:formData.password})
     if(res.success){
-      alert("login succesfull")
+      successToast(res.message)
     }else{
-      alert("error")
+      failureToast(res.message)
     }
   };
 
