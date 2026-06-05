@@ -159,4 +159,8 @@ async function getme(req, res) {
   }
 }
 
-export default { login, signup, getme }
+async function getall(req,res) {
+  let alluser =await userModel.find({}) 
+  res.json({success:true,message:"all user fetch",alluser})
+}
+export default { login, signup, getme ,getall}
